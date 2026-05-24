@@ -1188,15 +1188,13 @@ footer {
 }
 
 /* Botão CTA da navbar pulsando suavemente */
-.nav-cta {
-  animation: ctaPulse 3s ease-in-out infinite;
-}
-@keyframes ctaPulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(0,230,118,0); }
-  50%      { box-shadow: 0 0 12px 3px rgba(0,230,118,.25); }
-}
 @media (max-width: 991px) {
-  .nav-cta { animation: none !important; box-shadow: none !important; }
+  #nav, #nav *, #nav *::before, #nav *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
 }
 </style>
 </head>
