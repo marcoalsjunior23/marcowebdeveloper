@@ -952,14 +952,6 @@ footer {
 }
 
 /* Typewriter cursor */
-.typewriter-cursor {
-  display: inline-block;
-  width: 2px; height: 1em;
-  background: var(--verde);
-  margin-left: 2px;
-  vertical-align: middle;
-  animation: blink .75s step-end infinite;
-}
 
 /* Stagger reveal nos cards */
 .proj-card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .3s; }
@@ -1733,44 +1725,6 @@ const skillObs = new IntersectionObserver(es => {
 }, { threshold: 0.3 });
 const skillsWrap = document.querySelector('.skills-tags');
 if (skillsWrap) skillObs.observe(skillsWrap);
-
-/* ── TYPEWRITER NO HERO DESC ── */
-function typewriter(el, text, speed = 28) {
-  el.innerHTML = '';
-  const cursor = document.createElement('span');
-  cursor.className = 'typewriter-cursor';
-  el.appendChild(cursor);
-  let i = 0;
-  const iv = setInterval(() => {
-    el.insertBefore(document.createTextNode(text[i]), cursor);
-    i++;
-    if (i >= text.length) {
-      clearInterval(iv);
-      setTimeout(() => cursor.remove(), 1800);
-    }
-  }, speed);
-}
-
-/* Inicia o typewriter quando o hero-desc entra na tela */
-const heroDesc = document.querySelector('.hero-desc');
-if (heroDesc) {
-  const fullText = heroDesc.textContent.trim();
-
-  /* Reserva a altura exata antes de limpar o conteúdo */
-  const h = heroDesc.getBoundingClientRect().height;
-  heroDesc.style.minHeight = h + 'px';
-  heroDesc.style.display   = 'block';
-
-  heroDesc.textContent = '';
-
-  const twObs = new IntersectionObserver(es => {
-    if (es[0].isIntersecting) {
-      setTimeout(() => typewriter(heroDesc, fullText, 22), 600);
-      twObs.unobserve(heroDesc);
-    }
-  }, { threshold: 0.5 });
-  twObs.observe(heroDesc);
-}
 
 /* ── CONTADOR ANIMADO NOS STATS ── */
 function animCount(el) {
