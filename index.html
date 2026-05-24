@@ -188,6 +188,8 @@ html { overflow-x: hidden; }
   color: var(--czl); line-height: 1.8;
   max-width: 520px; margin-bottom: 3rem;
   opacity: 0; animation: fadeUp .7s ease forwards .4s;
+  /* altura reservada pra evitar reflow durante o typewriter */
+  min-height: calc(1.1rem * 1.8 * 3);
 }
 
 .hero-desc strong { color: var(--br2); font-weight: 500; }
@@ -227,7 +229,8 @@ html { overflow-x: hidden; }
 .btn-outline:hover { border-color: var(--verde); color: var(--verde); }
 
 .hero-img {
-  position: absolute; right: 0; top: 0; bottom: 0;
+  position: absolute; right: 0; top: 0;
+  height: 100vh;
   width: 42%; z-index: 1;
   overflow: hidden;
 }
