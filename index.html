@@ -973,7 +973,19 @@ footer {
   pointer-events: none;
 }
 
-/* Typewriter cursor */
+/* ── TYPEWRITER CURSOR ── */
+.tw-cursor {
+  display: inline-block;
+  color: var(--verde);
+  font-weight: 300;
+  margin-left: 1px;
+  animation: twBlink .75s step-end infinite;
+  opacity: 1;
+}
+@keyframes twBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
 
 /* Stagger reveal nos cards */
 .proj-card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .3s; }
@@ -1341,8 +1353,7 @@ footer {
     </h1>
 
     <p class="hero-desc">
-      Sou um desenvolvedor web de <strong>18 anos</strong>, que ama programação,
-      faço sites que mostram a <strong>personalidade da sua marca</strong>, vamos se conhecer melhor!
+      <span id="hero-typewriter"></span><span class="tw-cursor">|</span>
     </p>
 
     <div class="hero-btns">
@@ -1728,6 +1739,54 @@ footer {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+/* ── TYPEWRITER HERO DESC ── */
+(function() {
+  const el     = document.getElementById('hero-typewriter');
+  const cursor = document.querySelector('.tw-cursor');
+  if (!el) return;
+
+  const segments = [
+    { text: 'Sou um desenvolvedor web de ', bold: false },
+    { text: '18 anos',                       bold: true  },
+    { text: ', que ama programação, faço sites que mostram a ', bold: false },
+    { text: 'personalidade da sua marca',    bold: true  },
+    { text: ', vamos se conhecer melhor!',   bold: false },
+  ];
+
+  const tokens = [];
+  segments.forEach(seg => {
+    seg.text.split('').forEach(ch => tokens.push({ ch, bold: seg.bold }));
+  });
+
+  const START_DELAY = 900;
+  const SPEED       = 28;
+
+  let i = 0;
+  function type() {
+    if (i >= tokens.length) return;
+    const { ch, bold } = tokens[i];
+    if (bold) {
+      let last = el.lastChild;
+      if (!last || last.nodeName !== 'STRONG') {
+        last = document.createElement('strong');
+        el.appendChild(last);
+      }
+      last.textContent += ch;
+    } else {
+      let last = el.lastChild;
+      if (!last || last.nodeName === 'STRONG') {
+        last = document.createTextNode('');
+        el.appendChild(last);
+      }
+      last.textContent += ch;
+    }
+    i++;
+    setTimeout(type, SPEED);
+  }
+
+  setTimeout(type, START_DELAY);
+})();
+
 /* ── CURSOR GLOW ── */
 const glow = document.getElementById('cursorGlow');
 document.addEventListener('mousemove', e => {
