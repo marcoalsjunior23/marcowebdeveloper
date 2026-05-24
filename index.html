@@ -37,8 +37,11 @@ body {
   font-family: 'Figtree', sans-serif;
   background: var(--bg);
   color: var(--br);
-  overflow-x: hidden;
 }
+
+/* overflow-x no wrapper, NÃO no body — evita quebrar position:fixed no mobile */
+body > * { max-width: 100%; }
+html { overflow-x: hidden; }
 
 /* ── CURSOR GLOW ── */
 .cursor-glow {
@@ -843,8 +846,11 @@ footer {
   border-radius: 3px; z-index: 9000;
   transition: transform .35s cubic-bezier(.4,0,.2,1);
   pointer-events: none;
+  will-change: transform;
+  /* Fix para mobile webkit: força o toast a ficar no viewport */
+  -webkit-transform: translateX(-50%) translateY(60px);
 }
-.toast-mj.on { transform: translateX(-50%) translateY(0); }
+.toast-mj.on { transform: translateX(-50%) translateY(0); -webkit-transform: translateX(-50%) translateY(0); }
 
 /* ── KEYFRAMES ── */
 @keyframes fadeUp {
@@ -872,7 +878,7 @@ footer {
     touch-action: none;
   }
   .nav-links.open a { font-size: 1.3rem; }
-  .nav-tog { position: relative; z-index: 201; }
+  .nav-tog { position: fixed; top: 1rem; right: 1.5rem; z-index: 201; display: flex; }
 
   #hero { padding: 7rem 1.5rem 4rem; }
   .hero-img { display: none; }
@@ -940,7 +946,11 @@ footer {
   }
 }
 
-/* ══ MOTION & ANIMAÇÕES EXTRAS ══ */
+/* ── PREVENT HORIZONTAL OVERFLOW ── */
+/* Sections com elementos animados precisam de clip para não vazar no mobile */
+#sobre, #projetos, #servicos, #contato, footer {
+  overflow-x: clip;
+}
 
 /* Progress bar de scroll */
 #scroll-progress {
