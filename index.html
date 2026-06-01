@@ -347,10 +347,91 @@ html { overflow-x: hidden; }
   background: var(--bg2);
   border-top: 1px solid var(--border);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 420px 1fr;
   gap: 5rem;
-  align-items: center;
+  align-items: start;
 }
+
+.sobre-foto-col {
+  position: relative;
+}
+
+.sobre-foto-img-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sobre-foto-img-wrap img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: saturate(.75) brightness(.85);
+  transition: filter .5s;
+}
+
+.sobre-foto-col:hover .sobre-foto-img-wrap img {
+  filter: saturate(.95) brightness(.95);
+}
+
+/* borda verde no topo da foto */
+.sobre-foto-img-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--verde), transparent);
+  z-index: 2;
+}
+
+/* overlay escuro sutil na base */
+.sobre-foto-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,12,10,.55) 0%, transparent 50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* badge de status sobre a foto */
+.sobre-foto-badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(8,12,10,.85);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  padding: .5rem .9rem;
+  border-radius: 3px;
+}
+
+.sobre-foto-badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--verde);
+  box-shadow: 0 0 8px var(--verde);
+  animation: pisca 2s infinite;
+  flex-shrink: 0;
+}
+
+.sobre-foto-badge span {
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--br2);
+  font-family: 'Figtree', sans-serif;
+}
+
+/* coluna de texto */
+.sobre-txt-col {}
+
 
 .sobre-tag {
   font-size: .72rem; font-weight: 600;
@@ -887,7 +968,10 @@ footer {
   .hero-img { display: none; }
   .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
 
-  #sobre { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+  #sobre { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+  .sobre-foto-col { order: 2; }
+  .sobre-txt-col  { order: 1; }
+  .sobre-foto-img-wrap img { aspect-ratio: 4/3; }
   #projetos { padding: 4rem 1.5rem; }
   .projetos-grid { grid-template-columns: 1fr; }
   #servicos { padding: 4rem 1.5rem; }
@@ -1043,7 +1127,7 @@ footer {
 .btn-verde:hover::after { transform: translateX(0); }
 
 /* Sobre-card-icon float */
-.sobre-card-icon {
+/* ── TEXTO SOBRE ── */.sobre-card-icon {
   transition: transform .3s ease, background .2s, border-color .2s;
 }
 .sobre-card-item:hover .sobre-card-icon {
@@ -1297,7 +1381,19 @@ footer {
 
 <!-- SOBRE -->
 <section id="sobre">
-  <div class="rev-l">
+
+  <!-- COLUNA FOTO -->
+  <div class="sobre-foto-col rev-l">
+    <div class="sobre-foto-img-wrap">
+      <img
+        src="marco.jpg"
+        alt="Marco Júnior">
+
+    </div>
+  </div>
+
+  <!-- COLUNA TEXTO -->
+  <div class="sobre-txt-col rev-r">
     <span class="sobre-tag">Quem sou eu</span>
     <h2 class="sobre-titulo">Um desenvolvedor<br>que entrega<br><span style="color:var(--verde)">resultado.</span></h2>
     <div class="sobre-texto">
@@ -1319,38 +1415,6 @@ footer {
     </div>
   </div>
 
-  <div class="rev-r">
-    <div class="sobre-card">
-      <div class="sobre-card-item">
-        <div class="sobre-card-icon"><i class="bi bi-mortarboard"></i></div>
-        <div>
-          <div class="sobre-card-ttl">Técnico em Informática</div>
-          <div class="sobre-card-sub">3º ano · Cursando · Senac</div>
-        </div>
-      </div>
-      <div class="sobre-card-item">
-        <div class="sobre-card-icon"><i class="bi bi-code-slash"></i></div>
-        <div>
-          <div class="sobre-card-ttl">Desenvolvimento Web</div>
-          <div class="sobre-card-sub">Sites responsivos, landing pages e e-commerces com HTML, CSS, JS e Bootstrap</div>
-        </div>
-      </div>
-      <div class="sobre-card-item">
-        <div class="sobre-card-icon"><i class="bi bi-globe2"></i></div>
-        <div>
-          <div class="sobre-card-ttl">Atendimento remoto</div>
-          <div class="sobre-card-sub">Trabalho 100% online, atendendo clientes em todo o Brasil</div>
-        </div>
-      </div>
-      <div class="sobre-card-item">
-        <div class="sobre-card-icon"><i class="bi bi-clock"></i></div>
-        <div>
-          <div class="sobre-card-ttl">Disponível para projetos</div>
-          <div class="sobre-card-sub">Entrega em 7 a 21 dias dependendo da complexidade</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- PROJETOS -->
