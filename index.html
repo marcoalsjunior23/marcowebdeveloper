@@ -33,6 +33,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--cinza); }
+::-webkit-scrollbar-thumb  { background: var(--verde); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--verdeE); }
+
 body {
   font-family: 'Figtree', sans-serif;
   background: var(--bg);
