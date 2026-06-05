@@ -1301,6 +1301,79 @@ footer {
     transition: none !important;
   }
 }
+
+/* ── CTA ORÇAMENTO ── */
+.serv-cta-wrap {
+  margin-top: 2rem;
+}
+
+.serv-cta-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 2.25rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.serv-cta-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--verde), transparent);
+}
+
+/* luz de fundo sutil */
+.serv-cta-box::after {
+  content: '';
+  position: absolute;
+  right: -60px; top: 50%;
+  transform: translateY(-50%);
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,230,118,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.serv-cta-left {
+  flex: 1;
+}
+
+.serv-cta-tag {
+  display: inline-block;
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--verde);
+  margin-bottom: .6rem;
+}
+
+.serv-cta-txt {
+  font-size: .92rem; font-weight: 300;
+  color: var(--czl); line-height: 1.75;
+  max-width: 520px;
+}
+
+.serv-cta-btn {
+  flex-shrink: 0;
+  font-size: .9rem;
+  padding: 1rem 2rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .serv-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem 1.5rem;
+  }
+  .serv-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 </style>
 </head>
 <body>
@@ -1368,20 +1441,7 @@ footer {
       </a>
     </div>
 
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">6</div>
-        <div class="stat-lbl">Projetos no portfólio</div>
-      </div>
-      <div>
-        <div class="stat-num">3</div>
-        <div class="stat-lbl">Anos estudando web</div>
-      </div>
-      <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-lbl">Dedicação em cada projeto</div>
-      </div>
-    </div>
+
   </div>
 </section>
 
@@ -1575,9 +1635,9 @@ footer {
   <div class="sec-header rev">
     <div>
       <span class="sec-tag">O que ofereço</span>
-      <h2 class="sec-titulo">Serviços &<br>preços.</h2>
+      <h2 class="sec-titulo">Serviços sob<br>medida.</h2>
     </div>
-    <p style="font-size:.88rem;font-weight:300;color:var(--czl);max-width:320px;line-height:1.7">Preços diretos, sem enrolação. O que você vê aqui é o que você paga.</p>
+    <p style="font-size:.88rem;font-weight:300;color:var(--czl);max-width:320px;line-height:1.7">Cada projeto é único. Me conta o que você precisa e eu monto um orçamento personalizado pra você.</p>
   </div>
 
   <div class="servicos-grid">
@@ -1585,25 +1645,31 @@ footer {
       <div class="serv-icon"><i class="bi bi-phone"></i></div>
       <div class="serv-nome">Landing Page</div>
       <p class="serv-desc">Uma página completa, responsiva e focada em converter visitante em cliente. Hero, serviços, depoimentos, contato e WhatsApp.</p>
-      <div class="serv-preco">R$ 500 <span>a partir de</span></div>
     </div>
     <div class="serv-item rev" data-d=".1">
       <div class="serv-icon"><i class="bi bi-layers"></i></div>
       <div class="serv-nome">Site Institucional</div>
       <p class="serv-desc">Site com múltiplas páginas para empresas que precisam de mais espaço: Home, Sobre, Serviços, Equipe e Contato.</p>
-      <div class="serv-preco">R$ 900 <span>a partir de</span></div>
     </div>
     <div class="serv-item rev" data-d=".2">
       <div class="serv-icon"><i class="bi bi-cart3"></i></div>
       <div class="serv-nome">E-commerce</div>
       <p class="serv-desc">Loja online com catálogo de produtos, página de produto, carrinho funcional e integração com WhatsApp para fechamento.</p>
-      <div class="serv-preco">R$ 1.200 <span>a partir de</span></div>
     </div>
   </div>
 
-  <div class="text-center rev" style="margin-top:2.5rem">
-    <p style="font-size:.85rem;font-weight:300;color:var(--czl);margin-bottom:1.25rem">Não encontrou o que precisa? Me manda uma mensagem e a gente encontra uma solução.</p>
-    <a href="https://wa.me/5519997316030" class="btn-verde"><i class="bi bi-whatsapp"></i>Pedir orçamento</a>
+  <!-- CTA orçamento -->
+  <div class="serv-cta-wrap rev">
+    <div class="serv-cta-box">
+      <div class="serv-cta-left">
+        <span class="serv-cta-tag">Orçamento gratuito</span>
+        <p class="serv-cta-txt">Tem um projeto em mente? Me manda uma mensagem, sem compromisso, sem enrolação. Vamos conversar e criar algo incrível juntos.</p>
+      </div>
+      <a href="https://wa.me/5519997316030" class="btn-verde serv-cta-btn" target="_blank">
+        <i class="bi bi-whatsapp"></i>
+        Falar no WhatsApp
+      </a>
+    </div>
   </div>
 </section>
 
